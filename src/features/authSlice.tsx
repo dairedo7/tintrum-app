@@ -26,8 +26,8 @@ export const authSlice = createSlice({
           token: payload.token,
         })
       );
-      state.name = action.payload.name;
-      state.token = action.payload.token;
+      state.name = payload.name;
+      state.token = payload.token;
     },
     signOut: (state) => {
       localStorage.clear();

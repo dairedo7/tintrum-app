@@ -9,6 +9,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+.App {
+  background: #169def;
+  height: 100vh;
+}
+
 .gradient-custom {
   background: #169def;
 }
