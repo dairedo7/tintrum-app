@@ -57,7 +57,6 @@ const Auth = () => {
       toast.error((signInError as any).data.message);
     }
     if (isSignUpError) {
-      console.log(signUpData);
       toast.error((signUpError as any).data.message);
     }
     if (isSignInSuccess) {

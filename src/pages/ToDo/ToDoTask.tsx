@@ -19,7 +19,7 @@ export const ToDoLayout = () => {
       return [
         ...prevToDos,
         {
-          id: Math.random().toString(),
+          _id: Math.random().toString(),
           createdAt: date,
           title: todoTitle.title,
           text: todo.text,
@@ -32,9 +32,9 @@ export const ToDoLayout = () => {
       theme: 'dark',
     });
   }
-  function removeToDo(id: string) {
+  function removeToDo(_id: string) {
     setToDos((prevToDos): any => {
-      return prevToDos.filter((item) => item.id !== id);
+      return prevToDos.filter((item) => item._id !== _id);
     });
     toast.warn('The task has been removed', {
       position: 'bottom-right',
