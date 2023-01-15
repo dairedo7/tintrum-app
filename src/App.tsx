@@ -52,6 +52,7 @@ function App() {
               </PrivateRoute>
             }
           ></Route>
+          <Route path="*" element={<h1 className="p-4 text-white">The page you're trying to reach does not exist!</h1>}></Route>
         </Routes>
       </BrowserRouter>
     </div>

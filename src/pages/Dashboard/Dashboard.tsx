@@ -7,9 +7,6 @@ import { signOut, selectAuth } from '../../features/authSlice';
 const Dashboard = () => {
   const { name }: any = useAppSelector(selectAuth);
 
-  console.log(name.user.name);
-  console.log(2);
-  // console.log(name?.data.user.name);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 

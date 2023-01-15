@@ -1,5 +1,4 @@
 import React from 'react';
-// import styles from './ToDoList.module.scss';
 
 import { IItem } from '../../types/todo';
 
@@ -9,10 +8,12 @@ interface IProps {
 }
 
 const ToDoList: React.FC<IProps> = (props) => {
+  const { items } = props;
+
   return (
     <ul>
-      {props.items.map(({ _id, createdAt, text, title, className }) => (
-        <li className={className} key={_id}>
+      {items.map(({ _id, createdAt, text, title }) => (
+        <li className="card text-white bg-dark mb-5 w-75 mx-auto" key={_id}>
           <div className="card-header">Title: {title}</div>
           <div className="card-body">
             <h5 className="card-title">Created: {createdAt}</h5>
