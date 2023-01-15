@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ToDoList from '../../components/ToDoList/ToDoList';
 import AddToDo from '../../components/AddToDo/AddToDo';
 import { toast } from 'react-toastify';
 
 import { IItem } from '../../types/todo';
+import GoBackBtn from '../../components/GoBackBtn/GoBackBtn';
 
 export const ToDoLayout = () => {
   const [todos, setToDos] = useState<IItem[]>([]);
@@ -23,7 +24,6 @@ export const ToDoLayout = () => {
           createdAt: date,
           title: todoTitle.title,
           text: todo.text,
-          className: 'card text-white bg-dark mb-5 w-75 mx-auto',
         },
       ];
     });
@@ -44,6 +44,9 @@ export const ToDoLayout = () => {
   return (
     <div className="gradient-custom">
       <div className="container py-4 h-100">
+        <div>
+          <GoBackBtn />
+        </div>
         <div className="row d-flex justify-content-center align-items-center">
           <AddToDo onAddToDo={addToDo} />
           <ToDoList onRemoveToDo={removeToDo} items={todos} />

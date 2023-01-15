@@ -12,6 +12,7 @@ const LoadingToRedirect = () => {
     const interval = setInterval(() => {
       setCount((currentCount) => currentCount - 1);
     }, 1000);
+
     if (location.pathname === '/dashboard') {
       count === 0 && navigate('/auth');
     }
@@ -21,10 +22,7 @@ const LoadingToRedirect = () => {
     }
 
     if (location.pathname === '/auth') {
-      setCount((currentCount) => (currentCount = 1));
-      setTimeout(() => {
-        navigate('/dashboard');
-      }, 1000);
+      navigate('/dashboard');
     }
 
     return () => clearInterval(interval);

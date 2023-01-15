@@ -8,8 +8,6 @@ import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../features/authSlice';
 
-// import styles from './Auth.module.scss';
-
 const initialState = {
   firstName: '',
   secondName: '',

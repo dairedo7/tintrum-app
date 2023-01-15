@@ -3,5 +3,4 @@ export interface IItem {
   createdAt: string;
   title: string;
   text: string;
-  className: string;
 }
