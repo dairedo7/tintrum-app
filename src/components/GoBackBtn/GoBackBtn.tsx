@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
 
 import styles from './GoBackBtn.module.css';
 
@@ -12,9 +11,9 @@ const GoBackBtn = () => {
 
   return (
     <div className={styles.btn_alignment}>
-      <Button className="btn mb-4" variant="contained" onClick={navigateHandler}>
+      <button className="btn mb-4" onClick={navigateHandler}>
         Back
-      </Button>
+      </button>
     </div>
   );
 };
