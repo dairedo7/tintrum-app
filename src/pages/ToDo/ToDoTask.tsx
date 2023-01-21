@@ -4,43 +4,36 @@ import AddToDo from '../../components/AddToDo/AddToDo';
 import { toast } from 'react-toastify';
 
 import { IItem } from '../../types/todo';
+
 import GoBackBtn from '../../components/GoBackBtn/GoBackBtn';
 
 export const ToDoLayout = () => {
   const [todos, setToDos] = useState<IItem[]>([]);
 
-  const current = new Date();
+  const date = new Date().toLocaleString();
 
-  const date = `${current.getDate()}.${
-    current.getMonth() + 1
-  }.${current.getFullYear()} at: ${current.getHours()}:${current.getMinutes()}:${current.getSeconds()}`;
+  // console.log(date);
+  // const date = `${current.getDate()}.${
+  //   current.getMonth() + 1
+  // }.${current.getFullYear()} at: ${current.getHours()}:${current.getMinutes()}:${current.getSeconds()}`;
 
   function addToDo(todo: IItem, todoTitle: IItem) {
+    const { title } = todoTitle;
+    const { text } = todo;
+
     setToDos((prevToDos): any => {
       return [
         ...prevToDos,
         {
           _id: Math.random().toString(),
           createdAt: date,
-          title: todoTitle.title,
-          text: todo.text,
+          title: title,
+          text: text,
         },
       ];
     });
-    toast.info('New task has been added', {
-      position: 'top-right',
-      theme: 'dark',
-    });
   }
-  function removeToDo(_id: string) {
-    setToDos((prevToDos): any => {
-      return prevToDos.filter((item) => item._id !== _id);
-    });
-    toast.warn('The task has been removed', {
-      position: 'bottom-right',
-      theme: 'dark',
-    });
-  }
+
   return (
     <div className="gradient-custom">
       <div className="container py-4 h-100">
@@ -49,7 +42,7 @@ export const ToDoLayout = () => {
         </div>
         <div className="row d-flex justify-content-center align-items-center">
           <AddToDo onAddToDo={addToDo} />
-          <ToDoList onRemoveToDo={removeToDo} items={todos} />
+          <ToDoList />
         </div>
       </div>
     </div>
