@@ -34,6 +34,7 @@ const Auth = () => {
 
   const handleSignIn = async () => {
     if (email && password) {
+      // console.log(email);
       await signInUser({ email, password });
     } else {
       toast.error('Please, fill out all inut fields');

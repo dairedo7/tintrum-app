@@ -1,1 +1,1 @@
-export const baseUrl = 'https://tintrum.b4a.app/';
+export const baseUrl = 'https://tintrum.onrender.com/';
