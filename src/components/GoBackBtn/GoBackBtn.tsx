@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
-import { createSvgIcon } from '@material-ui/core';
+import Button from '@mui/material/Button';
+import { createSvgIcon } from '@mui/material/utils';
 
 import styles from './GoBackBtn.module.css';
 

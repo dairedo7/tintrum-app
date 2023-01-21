@@ -92,8 +92,9 @@ const AddToDo: React.FC<IProps> = (props) => {
           <MDBTextArea className="form-control-lg" name="text" label="Task message" onChange={inputHandler} contrast />
         </div>
       </div>
+
       <button className="btn btn-secondary btn-lg" type="submit">
-        Add new todo
+        Add new todos
       </button>
     </form>
   );
