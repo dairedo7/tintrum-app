@@ -8,10 +8,6 @@ import { setTasksList } from '../../features/taskSlice';
 
 import { toast } from 'react-toastify';
 
-interface IProps {
-  onAddToDo: (todo: IItem, todoTitle: IItem) => void;
-}
-
 type OnlyText = Pick<IItem, 'text'>;
 type OnlyTitle = Pick<IItem, 'title'>;
 
@@ -20,7 +16,7 @@ const initialState = {
   text: '',
 };
 
-const AddToDo: React.FC<IProps> = (props) => {
+const AddToDo: React.FC = () => {
   const [todo, textToDo] = useState<Partial<OnlyText>>();
   const [todoTitle, titleToDo] = useState<Partial<OnlyTitle>>();
 
@@ -43,7 +39,6 @@ const AddToDo: React.FC<IProps> = (props) => {
   function formHandler(e: React.FormEvent | React.ChangeEvent<HTMLInputElement>) {
     e.preventDefault();
     if (todo?.text && todoTitle?.title) {
-      props.onAddToDo(todo as IItem, todoTitle as IItem);
       postToDo();
       (document.getElementById('form') as HTMLFormElement).reset();
       todo.text = '';
