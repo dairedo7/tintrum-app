@@ -3,7 +3,8 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import Auth from './pages/Auth/Auth';
 import Dashboard from './pages/Dashboard/Dashboard';
-import { ToDoLayout } from './pages/ToDo/ToDoTask';
+import { ActiveToDoLayout } from './pages/ActiveToDo/ActiveToDo';
+import { FinishedToDoLayout } from './pages/FinishedToDo/FinishedToDo';
 
 import './App.css';
 
@@ -48,7 +49,15 @@ function App() {
             path="/tasks"
             element={
               <PrivateRoute>
-                <ToDoLayout />
+                <ActiveToDoLayout />
+              </PrivateRoute>
+            }
+          ></Route>
+          <Route
+            path="/finished"
+            element={
+              <PrivateRoute>
+                <FinishedToDoLayout />
               </PrivateRoute>
             }
           ></Route>

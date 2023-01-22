@@ -1,16 +1,19 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
-import { useGetPlannedTasksQuery, useRemoveTaskMutation } from '../../services/tasksApi';
-
+import { useGetPlannedTasksQuery, useRemoveTaskMutation, useUpdateStatusMutation } from '../../services/tasksApi';
 import { toast } from 'react-toastify';
 
 const ToDoList = () => {
   const { data: plannedTasks } = useGetPlannedTasksQuery('plan');
-
   const [removeTask, { isSuccess: isDeleted, isError: isDeletionError, error: deletionError }] = useRemoveTaskMutation();
+  const [updateStatus, { isSuccess: isUpdated, isError: isUpdatedError, error: updatedError }] = useUpdateStatusMutation();
 
   const onRemoveTask = async (id: string) => {
     await removeTask(id);
+  };
+
+  const onDoneTask = async (id: any) => {
+    await updateStatus(id);
   };
 
   useEffect(() => {
@@ -20,10 +23,19 @@ const ToDoList = () => {
         theme: 'dark',
       });
     }
+    if (isUpdated) {
+      toast.warn('The status has been changed', {
+        position: 'bottom-right',
+        theme: 'dark',
+      });
+    }
+    if (isUpdatedError) {
+      toast.error((updatedError as any).message);
+    }
     if (isDeletionError) {
       toast.error((deletionError as any).message);
     }
-  }, [deletionError, isDeleted, isDeletionError]);
+  }, [deletionError, isDeleted, isDeletionError, isUpdated, isUpdatedError, updatedError]);
 
   return (
     <ul>
@@ -35,9 +47,15 @@ const ToDoList = () => {
               <h5 className="card-title">Created: {createdAt}</h5>
               <p className="card-text">Message: {text}</p>
               <div className="d-flex justify-content-around">
-                {/* <button className="btn btn-primary btn-sm" onClick={() => onRemoveTask(_id)}>
-                Done
-              </button> */}
+                <button
+                  className="btn btn-primary btn-sm"
+                  onClick={() => {
+                    const taskId = { taskId: _id };
+                    return onDoneTask(taskId);
+                  }}
+                >
+                  Done
+                </button>
                 <button className="btn btn-primary btn-sm" onClick={() => onRemoveTask(_id)}>
                   Remove todo
                 </button>
