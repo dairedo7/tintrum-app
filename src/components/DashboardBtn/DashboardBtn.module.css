@@ -1,0 +1,10 @@
+.btn_alignment {
+  display: flex;
+  justify-content: end;
+}
+@media screen and (max-width: 679px) {
+  .btn_alignment {
+    justify-content: center;
+    align-items: center;
+  }
+}

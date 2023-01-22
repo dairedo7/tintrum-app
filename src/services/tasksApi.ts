@@ -1,6 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { baseUrl } from './API';
 
+import { IItem } from '../types/todo';
+
 export const taskApi = createApi({
   reducerPath: 'taskApi',
   baseQuery: fetchBaseQuery({
@@ -25,7 +27,7 @@ export const taskApi = createApi({
         return {
           url: '/tasks',
           method: 'post',
-          mode: 'cors',
+
           body: { ...credentials },
         };
       },
@@ -48,7 +50,17 @@ export const taskApi = createApi({
       query: () => '/tasks/get-status/done',
       providesTags: ['Done'],
     }),
+    updateStatus: builder.mutation<IItem, Partial<IItem> & Pick<IItem, '_id'>>({
+      query(put) {
+        return {
+          url: `/tasks/`,
+          method: 'put',
+          body: put,
+        };
+      },
+      invalidatesTags: ['Plan'],
+    }),
   }),
 });
 
-export const { useAddTaskMutation, useGetDoneTasksQuery, useGetPlannedTasksQuery, useRemoveTaskMutation } = taskApi;
+export const { useAddTaskMutation, useRemoveTaskMutation, useUpdateStatusMutation, useGetDoneTasksQuery, useGetPlannedTasksQuery } = taskApi;
