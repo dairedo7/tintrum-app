@@ -1,8 +1,8 @@
 import ToDoList from '../../components/ToDoList/ToDoList';
 import AddToDo from '../../components/AddToDo/AddToDo';
 
-import GoBackBtn from '../../components/GoBackBtn/GoBackBtn';
-import DoneBtn from '../../components/DoneBtn/DoneBtn';
+import GoBackBtn from '../../components/Buttons/GoBackBtn/GoBackBtn';
+import DoneBtn from '../../components/Buttons/DoneBtn/DoneBtn';
 
 export const ActiveToDoLayout = () => {
   return (

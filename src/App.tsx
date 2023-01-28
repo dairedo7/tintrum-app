@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
-import Auth from './pages/Auth/Auth';
+import Auth from './components/Auth/Auth';
 import Dashboard from './pages/Dashboard/Dashboard';
 import { ActiveToDoLayout } from './pages/ActiveToDo/ActiveToDo';
-import { FinishedToDoLayout } from './pages/FinishedToDo/FinishedToDo';
+import { FinishedToDoLayout } from './pages/FinishedToDoLayout/FinishedToDoLayout';
 
 import './App.css';
 

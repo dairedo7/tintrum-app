@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { MDBInput, MDBTextArea } from 'mdb-react-ui-kit';
+import { AddToDoFormLayout } from '../../pages/AddToDoFormLayout/AddToDoFormLayout';
 import { IItem } from '../../types/todo';
 
 import { useAddTaskMutation } from '../../services/tasksApi';
@@ -36,7 +36,7 @@ const AddToDo: React.FC = () => {
     setFormValue({ ...formValue, [e.target.name]: [e.target.value] });
   }
 
-  function formHandler(e: React.FormEvent | React.ChangeEvent<HTMLInputElement>) {
+  function formHandler(e: React.FormEvent) {
     e.preventDefault();
     if (todo?.text && todoTitle?.title) {
       postToDo();
@@ -64,7 +64,6 @@ const AddToDo: React.FC = () => {
         position: 'top-right',
         theme: 'dark',
       });
-      console.log(taskData);
 
       dispatch(
         setTasksList({
@@ -78,20 +77,9 @@ const AddToDo: React.FC = () => {
   }, [dispatch, isTaskAddedError, isTaskAddedSuccess, taskAddedError, taskData]);
 
   return (
-    <form className="mb-8" id="form" onSubmit={formHandler}>
-      <div className="d-flex flex-column justify-content-center align-items-center mb-4">
-        <div className="form-outline form-black mb-4">
-          <MDBInput className="form-control-lg" type="text" name="title" onChange={inputHandler} label="Task name" contrast />
-        </div>
-        <div className="form-outline form-black">
-          <MDBTextArea className="form-control-lg" name="text" label="Task message" onChange={inputHandler} contrast />
-        </div>
-      </div>
-
-      <button className="btn btn-secondary btn-lg" type="submit">
-        Add new todos
-      </button>
-    </form>
+    <>
+      <AddToDoFormLayout onFormHandler={formHandler} onInputHandler={inputHandler} />
+    </>
   );
 };
 
