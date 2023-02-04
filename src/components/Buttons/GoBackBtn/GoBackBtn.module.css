@@ -1,6 +1,6 @@
 .btn_alignment {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
 }
 @media screen and (max-width: 679px) {
   .btn_alignment {

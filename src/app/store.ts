@@ -1,4 +1,4 @@
-import { combineReducers, configureStore, MiddlewareArray, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query/react';
 import { authApi } from '../services/authApi';
 import { taskApi } from '../services/tasksApi';

@@ -1,4 +1,3 @@
-// import { FormValues } from '../../types/form';
 import { MDBInput } from 'mdb-react-ui-kit';
 import React, { useState } from 'react';
 
