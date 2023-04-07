@@ -6,7 +6,7 @@ interface TasksProps {
   onDoneTask: (id: object) => void;
 }
 
-export const PlannedToDoList: React.FC<TasksProps> = ({ tasks, onRemoveTask, onDoneTask }: TasksProps) => {
+export const PlannedToDoList = ({ tasks, onRemoveTask, onDoneTask }: TasksProps) => {
   return (
     <>
       {tasks.data.result.map(({ _id, createdAt, text, title }: { _id: string; createdAt: string; text: string; title: string }) => (
