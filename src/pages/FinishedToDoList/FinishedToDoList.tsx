@@ -7,7 +7,7 @@ interface TasksProps {
   onRemoveTask: (id: string) => void;
 }
 
-export const FinishedToDoList: React.FC<TasksProps> = ({ tasks, onRemoveTask }: TasksProps) => {
+export const FinishedToDoList = ({ tasks, onRemoveTask }: TasksProps) => {
   const [isTasks, setIsTasks] = useState<boolean>(false);
 
   useEffect(() => {

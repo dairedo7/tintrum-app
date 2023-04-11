@@ -15,12 +15,7 @@ const middleware = [
     },
   }).concat(authApi.middleware, taskApi.middleware),
 ];
-// const rootReducer = combineReducers({
-//   auth: authReducer,
-//   [authApi.reducerPath]: authApi.reducer,
-//   task: taskReducer,
-//   [taskApi.reducerPath]: taskApi.reducer,
-// });
+
 export const store = configureStore({
   reducer: {
     auth: authReducer,
