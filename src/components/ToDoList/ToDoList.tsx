@@ -25,7 +25,7 @@ const ToDoList = () => {
       });
     }
     if (isUpdated) {
-      toast.warn('The status has been changed', {
+      toast.success('Congratz! Task has been done', {
         position: 'bottom-right',
         theme: 'dark',
       });

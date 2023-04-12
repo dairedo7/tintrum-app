@@ -1,85 +1,69 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-
-import { useSignInUserMutation, useSignUpUserMutation } from '../../services/authApi';
-
-import { toast } from 'react-toastify';
-import { useDispatch } from 'react-redux';
-import { setUser } from '../../features/authSlice';
-
+import { useState } from 'react';
 import AuthLayout from '../../pages/AuthLayout/AuthLayout';
-
-import { FormValues } from '../../types/form';
+import SigninLayout from '../../pages/SigninLayout/SigninLayout';
+import SignupLayout from '../../pages/SignupLayout/SignupLayout';
 
 const initialState = {
-  firstName: '',
-  secondName: '',
   email: '',
   password: '',
   confirmPassword: '',
+  firstName: '',
+  secondName: '',
 };
 
 const Auth = () => {
   const [formValue, setFormValue] = useState(initialState);
 
+  const [showSignIn, setShowSignIn] = useState(true);
+  const [showSignUp, setShowSignUp] = useState(false);
+
   const { firstName, secondName, email, password, confirmPassword } = formValue;
-
-  const getFormValues = (formValue: FormValues) => {
-    setFormValue(formValue);
-  };
-
-  const [signInUser, { data: signInData, isSuccess: isSignInSuccess, isError: isSignInError, error: signInError }] = useSignInUserMutation();
-  const [signUpUser, { data: signUpData, isSuccess: isSignUpSuccess, isError: isSignUpError, error: signUpError }] = useSignUpUserMutation();
-
-  const dispatch = useDispatch();
-
-  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormValue({ ...formValue, [e.target.name]: e.target.value });
   };
 
-  const handleSignIn = async () => {
-    if (email && password) {
-      // console.log(email);
-      await signInUser({ email, password });
-    } else {
-      toast.error('Please, fill out all inut fields');
-    }
+  const openSignUpFrom = () => {
+    setShowSignIn(false);
+    setShowSignUp(true);
   };
 
-  const handleSignUp = async () => {
-    if (password !== confirmPassword) {
-      return toast.error("Passwords don't match!");
-    }
-
-    if (firstName && secondName && password && email) {
-      await signUpUser({ firstName, secondName, password, email });
-    }
+  const openSignInForm = () => {
+    setShowSignIn(true);
+    setShowSignUp(false);
   };
-
-  useEffect(() => {
-    if (isSignInError) {
-      toast.error((signInError as any).data.message);
-    }
-    if (isSignUpError) {
-      toast.error((signUpError as any).data.message);
-    }
-    if (isSignInSuccess) {
-      toast.success('You have been successfully logged in');
-      dispatch(setUser({ name: signInData, token: signInData }));
-      navigate('/dashboard');
-    }
-    if (isSignUpSuccess) {
-      toast.success('You have been successfully signed up');
-      dispatch(setUser({ name: signUpData, token: signUpData }));
-      navigate('/dashboard');
-    }
-  }, [dispatch, isSignInError, isSignInSuccess, isSignUpError, isSignUpSuccess, navigate, signInData, signInError, signUpData, signUpError]);
 
   return (
     <>
-      <AuthLayout formValues={getFormValues} handleChange={handleChange} handleSignIn={handleSignIn} handleSignUp={handleSignUp} />
+      {
+        <AuthLayout>
+          {showSignIn && (
+            <>
+              <SigninLayout email={email} password={password} handleChange={handleChange} />
+              <p className="text-white-50 fw-bold">No account with this email was found?</p>
+              <p className="text-white-50 fw-bold" style={{ cursor: 'pointer' }} onClick={openSignUpFrom}>
+                Sign Up
+              </p>
+            </>
+          )}
+          {showSignUp && (
+            <>
+              <SignupLayout
+                firstName={firstName}
+                secondName={secondName}
+                email={email}
+                password={password}
+                handleChange={handleChange}
+                confirmPassword={confirmPassword}
+              />
+              <p className="text-white-50 fw-bold">Already have an account?</p>
+              <p className="text-white-50 fw-bold" style={{ cursor: 'pointer' }} onClick={openSignInForm}>
+                Sign In
+              </p>
+            </>
+          )}
+        </AuthLayout>
+      }
     </>
   );
 };

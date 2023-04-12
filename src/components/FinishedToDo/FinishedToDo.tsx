@@ -4,13 +4,6 @@ import { useGetDoneTasksQuery, useRemoveTaskMutation } from '../../services/task
 import { FinishedToDoList } from '../../pages/FinishedToDoList/FinishedToDoList';
 import { toast } from 'react-toastify';
 
-// import { IItemArr } from '../../types/todoArr';
-
-// interface TasksProps {
-//   tasks: IItemArr;
-//   onRemoveTask: (id: string) => void;
-// }
-
 const FinishedToDo = () => {
   const { data: doneTasks } = useGetDoneTasksQuery('done');
 
@@ -30,9 +23,9 @@ const FinishedToDo = () => {
     if (isDeletionError) {
       toast.error((deletionError as any).message);
     }
-  }, [deletionError, isDeleted, isDeletionError]);
+  }, [isDeleted, deletionError, isDeletionError]);
 
-  return <ul>{doneTasks && <FinishedToDoList tasks={doneTasks} onRemoveTask={onRemoveTask} />}</ul>;
+  return <ul>{doneTasks && <FinishedToDoList tasks={doneTasks || []} onRemoveTask={onRemoveTask} />}</ul>;
 };
 
 export default FinishedToDo;

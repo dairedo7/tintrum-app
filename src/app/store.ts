@@ -1,4 +1,4 @@
-import { combineReducers, configureStore, MiddlewareArray, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query/react';
 import { authApi } from '../services/authApi';
 import { taskApi } from '../services/tasksApi';
@@ -15,12 +15,7 @@ const middleware = [
     },
   }).concat(authApi.middleware, taskApi.middleware),
 ];
-// const rootReducer = combineReducers({
-//   auth: authReducer,
-//   [authApi.reducerPath]: authApi.reducer,
-//   task: taskReducer,
-//   [taskApi.reducerPath]: taskApi.reducer,
-// });
+
 export const store = configureStore({
   reducer: {
     auth: authReducer,
