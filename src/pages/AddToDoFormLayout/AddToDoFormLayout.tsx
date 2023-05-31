@@ -1,5 +1,5 @@
 import React from 'react';
-import { MDBInput, MDBTextArea } from 'mdb-react-ui-kit';
+import { TextField, Button } from '@mui/material';
 
 interface AddToDoProps {
   onFormHandler: (id: React.FormEvent) => void;
@@ -11,16 +11,35 @@ export const AddToDoFormLayout: React.FC<AddToDoProps> = ({ onFormHandler, onInp
     <form className="mb-8" id="form" onSubmit={onFormHandler}>
       <div className="d-flex flex-column justify-content-center align-items-center mb-4">
         <div className="form-outline form-black mb-4">
-          <MDBInput className="form-control-lg" type="text" name="title" onChange={onInputHandler} label="Task name" contrast />
+          <TextField
+            variant="outlined"
+            size="medium"
+            fullWidth
+            name="title"
+            onChange={onInputHandler}
+            label="Task name"
+            InputLabelProps={{ style: { color: 'white' } }}
+          />
         </div>
         <div className="form-outline form-black">
-          <MDBTextArea className="form-control-lg" name="text" label="Task message" onChange={onInputHandler} contrast />
+          <TextField
+            variant="outlined"
+            sx={{ width: '223px' }}
+            size="medium"
+            fullWidth
+            name="text"
+            onChange={onInputHandler}
+            label="Task message"
+            InputLabelProps={{ style: { color: 'white' } }}
+            rows={4}
+            multiline
+          />
         </div>
       </div>
 
-      <button className="btn btn-secondary btn-lg" type="submit">
+      <Button variant="outlined" sx={{ background: '#1976d2', color: 'white', '&:hover': { color: '#4f4f4f' }, fontWeight: 'bold' }} type="submit">
         Add new todos
-      </button>
+      </Button>
     </form>
   );
 };
